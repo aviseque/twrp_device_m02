@@ -6,7 +6,7 @@
 DEVICE_PATH := device/samsung/m02
 
 # ==========================================
-# Architecture – use armv8-a to satisfy build check
+# Architecture
 # ==========================================
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv8-a
@@ -70,11 +70,22 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
-TW_USE_TOOLBOX := true
-TW_NO_LEGACY_PROPS := true
 TW_STORAGE_PATHS := "/data/media"
+
+# ==========================================
+# CRITICAL FIXES for correct ramdisk structure
+# ==========================================
+TW_NO_SYSTEM_ROOT := false
+TW_USE_TOOLBOX := true
+TW_USE_NEW_MINADBD := true
+TW_NO_LEGACY_PROPS := true
 TW_EXCLUDE_SUPERSU := true
 TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_INFO := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+TW_INCLUDE_FB2PNG := true
 
 # ==========================================
 # SELinux
