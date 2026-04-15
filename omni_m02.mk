@@ -8,10 +8,6 @@ PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-M022G
 PRODUCT_MANUFACTURER := samsung
 
-# Include TWRP
-WITH_TWRP := true
-$(call inherit-product, device/samsung/m02/twrp.mk)
-
 # Recovery
 PRODUCT_PACKAGES += \
     recovery \
