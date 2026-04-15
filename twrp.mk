@@ -1,7 +1,5 @@
 # TWRP specific includes
 ifeq ($(WITH_TWRP),true)
-    include build/make/target/product/embedded.mk
-    include external/busybox/Android.mk
     include bootable/recovery/twrp/Android.mk
 endif
 
