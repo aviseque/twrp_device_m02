@@ -1,23 +1,18 @@
 # Device: SM-M022G (Samsung Galaxy M02)
 # Based on AIDA64 report
-# Chipset: MT6739WW
-# CPU: ARM Cortex-A53 (32-bit mode)
-# Android: 11 (API 30)
-# Kernel: 4.14.186
+# Chipset: MT6739WW (32-bit mode)
+# Android: 11
 
 DEVICE_PATH := device/samsung/m02
 
 # ==========================================
-# Architecture (32-bit ARM - from AIDA64)
+# Architecture – use armv8-a to satisfy build check
 # ==========================================
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
-
-# Bypass build system's strict architecture check
-TARGET_2ND_ARCH_VARIANT := armv8-a
 
 # ==========================================
 # Bootloader
@@ -26,13 +21,13 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := mt6739
 
 # ==========================================
-# Platform (from AIDA64: mt6739)
+# Platform
 # ==========================================
 TARGET_BOARD_PLATFORM := mt6739
 TARGET_BOARD_PLATFORM_GPU := PowerVR GE8100
 
 # ==========================================
-# Kernel (from your extracted kernel)
+# Kernel
 # ==========================================
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
 BOARD_KERNEL_BASE := 0x40000000
@@ -44,7 +39,7 @@ BOARD_KERNEL_IMAGE_NAME := kernel
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel
 
 # ==========================================
-# Partitions (from AIDA64: 24GB internal)
+# Partitions
 # ==========================================
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
@@ -63,7 +58,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # ==========================================
-# TWRP Specific Flags
+# TWRP Flags
 # ==========================================
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
@@ -87,7 +82,7 @@ TW_EXCLUDE_TWRPAPP := true
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # ==========================================
-# MediaTek specifics (from AIDA64: MT6739WW)
+# MediaTek
 # ==========================================
 BOARD_USES_MTK_HARDWARE := true
 MTK_HARDWARE := true
