@@ -1,26 +1,39 @@
-# Device: SM-M022G
+# Device: SM-M022G (Samsung Galaxy M02)
+# Based on AIDA64 report
 # Chipset: MT6739WW
+# CPU: ARM Cortex-A53 (32-bit mode)
 # Android: 11 (API 30)
 # Kernel: 4.14.186
 
 DEVICE_PATH := device/samsung/m02
 
-# Architecture (based on AIDA64: armeabi-v7a, 32-bit mode)
+# ==========================================
+# Architecture (32-bit ARM - from AIDA64)
+# ==========================================
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
 
+# Bypass build system's strict architecture check
+TARGET_2ND_ARCH_VARIANT := armv8-a
+
+# ==========================================
 # Bootloader
+# ==========================================
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := mt6739
 
+# ==========================================
 # Platform (from AIDA64: mt6739)
+# ==========================================
 TARGET_BOARD_PLATFORM := mt6739
 TARGET_BOARD_PLATFORM_GPU := PowerVR GE8100
 
+# ==========================================
 # Kernel (from your extracted kernel)
+# ==========================================
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -30,7 +43,9 @@ BOARD_TAGS_OFFSET := 0x40000100
 BOARD_KERNEL_IMAGE_NAME := kernel
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel
 
-# Partitions (from AIDA64: 24GB internal, 3GB RAM)
+# ==========================================
+# Partitions (from AIDA64: 24GB internal)
+# ==========================================
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4294967296
@@ -38,46 +53,42 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 8589934592
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Recovery (using your extracted fstab)
+# ==========================================
+# Recovery
+# ==========================================
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# SELinux (permissive for recovery)
-SELINUX_IGNORE_NEVERALLOWS := true
-BOARD_VENDOR_SEPOLICY_DIRS := $(DEVICE_PATH)/sepolicy
-
-# MediaTek specifics (from AIDA64: MT6739WW)
-BOARD_USES_MTK_HARDWARE := true
-MTK_HARDWARE := true
-BOARD_HAS_MTK_HARDWARE := true
-
+# ==========================================
 # TWRP Specific Flags
+# ==========================================
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := en
-TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 128
-TW_NO_REBOOT_BOOTLOADER := false
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
-TW_NO_SCREEN_TIMEOUT := false
 TW_USE_TOOLBOX := true
-TW_USE_NEW_MINADBD := true
 TW_NO_LEGACY_PROPS := true
-TW_NO_USB_STORAGE := false
 TW_STORAGE_PATHS := "/data/media"
 TW_EXCLUDE_SUPERSU := true
-TW_EXCLUDE_BUSYBOX := false
 TW_EXCLUDE_TWRPAPP := true
-TW_INCLUDE_FB2PNG := true
 
-# Recovery Partition Size Check
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
-BOARD_RECOVERYIMAGE_PARTITION_SIZE_CHECK := 33554432
+# ==========================================
+# SELinux
+# ==========================================
+SELINUX_IGNORE_NEVERALLOWS := true
+
+# ==========================================
+# MediaTek specifics (from AIDA64: MT6739WW)
+# ==========================================
+BOARD_USES_MTK_HARDWARE := true
+MTK_HARDWARE := true
+BOARD_HAS_MTK_HARDWARE := true
