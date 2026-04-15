@@ -1,4 +1,3 @@
-# Device path
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
@@ -9,10 +8,14 @@ PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-M022G
 PRODUCT_MANUFACTURER := samsung
 
+# Include TWRP
+WITH_TWRP := true
+$(call inherit-product, device/samsung/m02/twrp.mk)
+
 # Recovery
 PRODUCT_PACKAGES += \
     recovery \
-    twrp
+    twrp-installer
 
 # Copy fstab
 PRODUCT_COPY_FILES += \
