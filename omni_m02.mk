@@ -10,8 +10,7 @@ PRODUCT_MANUFACTURER := samsung
 
 # Recovery
 PRODUCT_PACKAGES += \
-    recovery \
-    twrp-installer
+    recovery
 
 # Copy fstab
 PRODUCT_COPY_FILES += \
