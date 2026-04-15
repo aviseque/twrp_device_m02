@@ -1,6 +1,7 @@
-# Device: SM-M022G (Samsung Galaxy M02)
-# Chipset: MT6739WW (32-bit mode)
-# Android: 11
+# ==========================================
+# TWRP Board Configuration for SM-M022G
+# Samsung Galaxy M02 | MT6739WW | Android 11
+# ==========================================
 
 DEVICE_PATH := device/samsung/m02
 
@@ -26,7 +27,7 @@ TARGET_BOARD_PLATFORM := mt6739
 TARGET_BOARD_PLATFORM_GPU := PowerVR GE8100
 
 # ==========================================
-# Kernel
+# Kernel (from stock recovery)
 # ==========================================
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
 BOARD_KERNEL_BASE := 0x40000000
@@ -57,19 +58,29 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # ==========================================
-# TWRP Flags
+# TWRP Flags - CRITICAL for correct output
 # ==========================================
+# Ramdisk structure (fixes malformed output)
+TW_NO_SYSTEM_ROOT := false
+TW_USE_TOOLBOX := true
+TW_USE_NEW_MINADBD := true
+
+# Samsung SEANDROID tag (required for Odin/Bugjaeger)
+TW_NO_SEANDROID := false
+
+# Display and theme
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := en
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 128
+
+# Features
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
-TW_USE_TOOLBOX := true
 TW_NO_LEGACY_PROPS := true
 TW_STORAGE_PATHS := "/data/media"
 TW_EXCLUDE_SUPERSU := true
